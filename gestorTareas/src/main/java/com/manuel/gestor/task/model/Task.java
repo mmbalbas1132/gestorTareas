@@ -1,9 +1,7 @@
 package com.manuel.gestor.task.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Lob;
+import com.manuel.gestor.category.model.Category;
+import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.proxy.HibernateProxy;
 
@@ -35,6 +33,9 @@ public class Task {
     @Builder.Default
 private LocalDateTime createdAt = LocalDateTime.now();
 
+    @ManyToOne
+    @JoinColumn(foreignKey = @ForeignKey(name = "fk_task_category"))
+    private Category category;
 
     @Override
     public final boolean equals(Object o) {
